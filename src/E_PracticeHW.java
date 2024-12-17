@@ -59,17 +59,26 @@ public class E_PracticeHW {
         JSONParser parser = new JSONParser();
         JSONObject pikachu = (JSONObject) parser.parse(jsonString);
         System.out.println("Pikachu's JSON: " + pikachu);
-        JSONArray abilities = (JSONArray) pikachu.get("abilities");
 
         /* TODO : print out the name of each ability that Pikachu has */
         // feel free to paste this URL into your browser to explore the JSON: https://pokeapi.co/api/v2/pokemon/pikachu/
-
+        JSONArray abilities = (JSONArray) pikachu.get("abilities"); //a for abilities
+        System.out.println("ABILITIES: " + abilities);
         //print each ally on its own line (using a for loop)
-        for (int i = 0; i < pikachu.size(); i++){
-                JSONObject name = (JSONObject) abilities.get(i);
-                String abilities = (String) pikachu.get("name");
-                System.out.println(abilities);
+        for (int i = 0; i < abilities.size(); i++){
+                JSONObject ability = (JSONObject) abilities.get(i);
+                JSONObject power = (JSONObject) ability.get("ability");
+                String name = (String) power.get("name");
+                System.out.println("NAME of ABILITY: " + name);
         }
 
+        /* TODO : print out Pikachu's held items! */
+        JSONArray held_items = (JSONArray) pikachu.get("held_items");
+        for(int c = 0; c < held_items.size(); c++){
+            JSONObject item = (JSONObject) held_items.get(c);
+            JSONObject object = (JSONObject) item.get("item");
+            String name = (String) object.get("name");
+            System.out.println("NAME of HELD ITEM: " + name);
+        }
     }
 }
